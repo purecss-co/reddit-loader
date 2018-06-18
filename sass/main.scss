@@ -1,0 +1,181 @@
+// colors
+$bg-color: #fff;
+$circle-color: #ff421e;
+$logo-color: #fff;
+
+// mixins
+@mixin center {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+@mixin pseudo($position: absolute, $content: "") {
+    content: $content;
+    position: $position;
+}
+
+// keyframes
+@keyframes loader {
+  0% {
+    width: 48.8vmin;
+    height: 48.8vmin;
+    opacity: 0.6;
+  }
+  100% {
+    width: 80vmin;
+    height: 80vmin;
+    opacity: 0;
+  }
+}
+
+html, body{
+  width: 100%;
+  height: 100%;
+}
+
+body{
+  background: $bg-color;
+  overflow: hidden;
+}
+
+.loader{
+  @include center;
+  width: 48.8vmin;
+  height: 48.8vmin;
+  border-radius: 50%;
+  background: $circle-color;
+  animation: loader 1.6s linear infinite;
+}
+
+.circle{
+  @include center;
+  width: 48.8vmin;
+  height: 48.8vmin;
+  border-radius: 50%;
+  background: $circle-color;
+
+  .horn{
+    @include center;
+    top: -17.2vmin;
+    left: 9.8vmin;
+    z-index: 1;
+    width: 8.5vmin;
+    height: 9.5vmin;
+    background: transparent;
+    border: 1.1vmin solid $logo-color;
+    border-radius: 0.5vmin;
+    border-right: none;
+    border-bottom: none;
+    transform: rotate(12deg);
+
+    &:after{
+      @include pseudo;
+      top: -3vmin;
+      left: 5.5vmin;
+      width: 5vmin;
+      height: 5vmin;
+      background: $logo-color;
+      border-radius: 50%;
+    }
+  }
+
+  .head{
+    @include center;
+    top: 8.8vmin;
+    width: 28.7vmin;
+    height: 19.8vmin;
+    background: $logo-color;
+    border-radius: 50%;
+  }
+
+  .ear-abstract{
+    width: 7vmin;
+    height: 7vmin;
+    background: $logo-color;
+    border-radius: 50%;
+  }
+
+  .ear{
+    @include center;
+    @extend .ear-abstract;
+    left: 25.5vmin;
+
+    &:before{
+      @include pseudo;
+      @extend .ear-abstract;
+      left: -25.8vmin;
+    }
+  }
+
+  .eye-abstract{
+    width: 5vmin;
+    height: 5vmin;
+    border-radius: 50%;
+    background: $circle-color;
+  }
+
+  .eye{
+    @include center;
+    z-index: 2;
+    @extend .eye-abstract;
+    top: 5.2vmin;
+    left: -11.5vmin;
+
+    &:after{
+      @include pseudo;
+      @extend .eye-abstract;
+      left: 11.2vmin;
+    }
+  }
+
+  .mouth{
+    @include center;
+    z-index: 1;
+    top: 15vmin;
+    width: 11.5vmin;
+    height: 6.5vmin;
+    background: transparent;
+    border: 1.2vmin solid $circle-color;
+    border-top: none;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+
+    &:before{
+      @include pseudo;
+      top: -0.1vmin;
+      left: -2vmin;
+      width: 17vmin;
+      height: 5vmin;
+      background: $logo-color;
+    }
+  }
+
+  .mouth-circle{
+  @include center;
+  z-index: 4;
+  top: 17.1vmin;
+  left: 12.2vmin;
+  width: 1.14vmin;
+  height: 1.5vmin;
+  background: $circle-color;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  transform: rotate(52deg);
+
+  &:after{
+    @include pseudo;
+    top: 9.5vmin;
+    left: -7.5vmin;
+    width: 1.14vmin;
+    height: 1.5vmin;
+    background: $circle-color;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    transform: rotate(-95deg);
+  }
+}
+}
